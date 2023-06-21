@@ -1,5 +1,6 @@
 import { useState } from "react";
 import movies from "../data/movies.json";
+import Movie from "./Movie";
 
 import "./Main.css";
 
@@ -37,27 +38,13 @@ function Main() {
             {/* this  {message} comes from the conditional rendering option A */}
             {message} 
 
-            {moviesToDisplay.map((movieObj) => {  //we iterate through the array via .map
-                return(
-                    <div key={movieObj.id} className="card">
-                        <p>{movieObj.title}</p>
-                        <p>Rating: {movieObj.rating}</p>
-
-                        {/* conditional rendering option C */}
-                        {movieObj.imgURL                                             //if this confition is truthy, then show our image
-                        ? <img src={movieObj.imgURL} />                             //if the conditoin is not truthy... then show the placeholder
-                        : <img src="https://dummyimage.com/182x268/ffffff/000000" /> //this is a generic placeholder icon from the internet
-                         }
-                        
-
-                        {/* OPTION B //  if the rating is above 8, then render a message> RECCOMENDED */}
-                        { movieObj.rating > 8 && <p>RECOMMENDED</p>}
-
-
-                        <button onClick={ () => {deleteMovie(movieObj.id)}}>Delete this movie</button>
-                    </div>
-                )
+            {/* we here call only one movie from Movie.js so we iterate throught the whole array THE .map methods return an array and we need to RETURN */}
+            {moviesToDisplay.map((movieObj) => {
+                    return <Movie  key={movieObj.id} movieDetails = {movieObj}/>  //we need a key in the parent element when a .map method. //// we create the movie Details out of this air and can call it whatever: something={value} if a variable or something="value", if a string.
             })}
+
+
+            
         </div>
     );
 }
