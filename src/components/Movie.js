@@ -16,8 +16,8 @@ function Movie(props) {
             {props.movieDetails.rating > 8 && <p>RECOMMENDED</p>}
 
             <p>
-            {/* we can invoke the funciton callbackToDelete from the parent component Main.js */}
-                 <button onClick={() => {props.callbackToDelete(props.movieDetails.id)}}>Delete this movie</button> 
+            {/* Lifting state: we can invoke the function callbackToDelete from the grandparent App.js (or also.... from the parent component Main.js)*/}
+                 <button onClick={() => {props.callbackToDelete(props.movieDetails.title)}}>Delete this movie</button> 
 
             </p>
         </div>
