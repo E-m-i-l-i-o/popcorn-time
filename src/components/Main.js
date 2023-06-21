@@ -40,8 +40,8 @@ function Main() {
 
             {/* we here call only one movie from Movie.js so we iterate throught the whole array THE .map methods return an array and we need to RETURN */}
             {moviesToDisplay.map((movieObj) => {
-                    return <Movie  key={movieObj.id} movieDetails = {movieObj}/>  //we need a key in the parent element when a .map method. //// we create the movie Details out of this air and can call it whatever: something={value} if a variable or something="value", if a string.
-            })}
+                   return <Movie key={movieObj.id} movieDetails={movieObj} callbackToDelete={deleteMovie} />   //we need a key in the parent element when a .map method. //// we create the movie Details out of this air and can call it whatever: something={value} if a variable or something="value", if a string. ///We also create a callbackToDelete name to reference from this parent component to the child component, this way we can invoke the fucntionality in this parent component from the child component Movie.js
+            })}                                                                                                 
 
 
             
