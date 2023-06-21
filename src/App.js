@@ -4,6 +4,8 @@ import movies from "./data/movies.json";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
+import AddMovie from "./components/AddMovie";
+
 
 import "./App.css";
 
@@ -11,9 +13,15 @@ function App() {
   //const [something, setSomething] = useState(initialValue)
   const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
 
-  // FORM to add movies to our list
-  const [title, setTitle] = useState("");               //title is whatever the user types in the form
-  const [rating, setRating] = useState("");             //rating is whatever the user types in the form
+  
+  const createMovie = (newMovie) => {
+    // new list = an array with the new movie + all the movies we had before
+    const newList = [newMovie, ...moviesToDisplay];
+
+    // update state
+    setMoviesToDisplay(newList);
+  }
+
 
 
 // DELETE button
@@ -33,25 +41,6 @@ function App() {
 
 
 
-  // handle the Form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();                                           // avoid page refresh
-
-    const newMovie = {
-      title: title,                                               //// the key title comes from the following the same pattern as we have in the Json) /// then, the value: title, is whatever the user types in the form and we defined it as value in the second useState above
-      rating: rating,                                           ///we take teh value rating from the useState above
-    };
-    // moviesToDisplay.push(newMovie) ///NEVER MODIFY STATE DIRECTLY
-
-    const newList = [...moviesToDisplay, newMovie];               //we make a shallow copy of the array moviesToDisplay, because that is the list of movies we display in our website... and we add the new movie to that list but adding-> , newMovie
-    setMoviesToDisplay(newList);
-
-
-    // clear the form after submitting it
-    setTitle("");
-    setRating("");
-
-  };
 
   return (
     <div className="App">
@@ -60,41 +49,9 @@ function App() {
       <Header numberOfMovies={moviesToDisplay.length} />
                                                           {/* we create a property listOfMovies and assign it a value in thisparent component, so that Main can receive it as a prop . we create the callback to delete in order to execute this funciton from a grandchild (MOVIE)*/}
 
-      <section>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Title:
-            <input
-              type="text"
-              required={true}
-              name="title"
-              placeholder="enter the title"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-            />
-          </label>
-                <br />
-          <label>
-            Rating:
-            <input
-              type="number"
-              min={1}
-              max={10}
-              required={true}
-              name="rating"
-              placeholder="your rating"
-              value={rating}
-              onChange={(e) => { 
-                setRating(e.target.value);
-               }}
-            />
-          </label>
+      <AddMovie callbackToCreate ={createMovie}/>
 
-          <button>Create</button>
-        </form>
-      </section>
+     
 
       <Main listOfMovies={moviesToDisplay} callbackToDelete={deleteMovie} />
 
