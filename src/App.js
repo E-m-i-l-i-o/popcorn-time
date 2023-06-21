@@ -50,9 +50,7 @@ function App() {
                                                           {/* we create a property listOfMovies and assign it a value in thisparent component, so that Main can receive it as a prop . we create the callback to delete in order to execute this funciton from a grandchild (MOVIE)*/}
 
       <AddMovie callbackToCreate ={createMovie}/>
-
-     
-
+                                                          {/* we make this up callbackToCreate but we have to assign it the value of the fucntion deleteMovie, bc we want to call it from the child or grandchild  */}
       <Main listOfMovies={moviesToDisplay} callbackToDelete={deleteMovie} />
 
       <Footer />

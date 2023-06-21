@@ -4,7 +4,7 @@ import { useState } from "react";
 // FORM to add movies to our list
 
 
-
+// a controlled component needs teh useState variables
 
 function AddMovie(props){
     const [title, setTitle] = useState("");               //title is whatever the user types in the form
