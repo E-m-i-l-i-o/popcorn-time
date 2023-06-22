@@ -13,7 +13,8 @@ function App() {
   //const [something, setSomething] = useState(initialValue)
   const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
 
-  
+
+  // this function is here but we call it from AddMovie.js via the <AddMovie /> below
   const createMovie = (newMovie) => {
     // new list = an array with the new movie + all the movies we had before
     const newList = [newMovie, ...moviesToDisplay];

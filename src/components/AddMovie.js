@@ -1,4 +1,7 @@
 
+
+// This is a controlled Component
+
 import { useState } from "react";
 
 // FORM to add movies to our list
